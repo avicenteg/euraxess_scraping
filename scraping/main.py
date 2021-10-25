@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup as BS
 import re
 import pandas as pd
+
 def SearchOportunities(keywords):
     # Header definition
     headers = {

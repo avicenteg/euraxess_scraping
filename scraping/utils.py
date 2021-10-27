@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup as BS
 import re
 import pandas as pd
-import numpy as np
+from tqdm import tqdm 
 from time import sleep
 
 def search_oportunities(keywords):
@@ -50,21 +50,19 @@ def search_oportunities(keywords):
             profiles = []
             companies = []
             hours = []
-            for i in range(int(pages_count_subdomain)):
+            for i in tqdm(range(int(pages_count_subdomain))):
                 subdomain_pages_str = subdomain_str + "&page={}".format(i)  # String of keyword webpage i
-                subdomain_pages_rq = requests.get(subdomain_pages_str, headers=headers, timeout=20)  # Request of this page
+                subdomain_pages_rq = requests.get(subdomain_pages_str, headers=headers, timeout=120)  # Request of this page
                 subdomain_pages_rq.close()
                 soup_subdomain_pages = BS(subdomain_pages_rq.content, "html.parser")  # page BeautifulSoup
                 titles_subdomain = soup_subdomain_pages.find_all("div", {"class": "col-sm-12 col-md-6"})  # Obtain html line of titles
-                for j in range(len(titles_subdomain)):
-                    suffix_href = "".join(re.findall(r'/jobs/\d+',str(titles_subdomain[j])))
+                for title in titles_subdomain:
+                    suffix_href = "".join(re.findall(r'/jobs/\d+',str(title)))
                     href = main_str + suffix_href
                     raw_href_sub.append(href)   # Get offer URLs
-                    raw_titles_sub.append(titles_subdomain[j].get_text().replace("\n",""))  # Get offer titles
-            for url in range(len(raw_href_sub)):
-                job_url = 'https://euraxess.ec.europa.eu/jobs/691817' #https://euraxess.ec.europa.eu/jobs/687017main_str + raw_href_sub[url]
-                sleep(5)
-                job_rq = requests.get(job_url, headers=headers, timeout=20)
+                    raw_titles_sub.append(title.get_text().replace("\n",""))  # Get offer titles
+            for url in tqdm(raw_href_sub):
+                job_rq = requests.get(url, headers=headers, timeout=120)
                 job_rq.close()
                 job_soup = BS(job_rq.content, "html.parser")
                 job_country = job_soup.find_all("div", {"class": "value field-country"})
@@ -75,23 +73,24 @@ def search_oportunities(keywords):
                 if len(job_country) > 0:
                     countries.append(job_country[0].get_text().strip())
                 else:
-                    countries.append(np.nan)
+                    countries.append("")
                 if len(job_city) > 0:
                     cities.append(job_city[0].get_text().strip())
                 else:
-                    cities.append(np.nan)
+                    cities.append("")
                 if len(job_company) > 0:
                     companies.append(job_company[0].get_text().strip())
                 else:
-                    companies.append(np.nan)
+                    companies.append("")
                 if len(hours_week) > 0:
                     hours.append(hours_week[0].get_text().strip())
                 else:
-                    hours.append(np.nan)
+                    hours.append("")
                 if len(researcher_profile) > 0:
-                    profiles.append(researcher_profile[0].get_text().strip())
+                    profiles.append(" ".join(researcher_profile[0].get_text().strip().replace("\n\n",",").split()))
                 else:
-                    profiles.append(np.nan)
+                    profiles.append("")
+
     empty_table = pd.DataFrame()
     empty_table["Job Offer Title"] = raw_titles_sub
     empty_table["Researcher Profile"] = profiles
@@ -101,10 +100,4 @@ def search_oportunities(keywords):
     empty_table["City"] = cities
     empty_table["More Info"] = raw_href_sub
 
-    empty_table.to_csv(r"C:\Users\pabro\Desktop\Trabajo\Python\Datasets_borrar\{}.csv".format(keywords))
-
-
-
-
-
-search_oportunities("Data Analyst")
+    empty_table.to_csv(r"{}.csv".format(keywords), sep=";" ,index=False)

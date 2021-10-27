@@ -1,5 +1,5 @@
 
-from utils import search_opotunities
+from utils import search_oportunities
 
 if __name__ == "__main__":
-    search_opotunities("Data Scientist")
+    search_oportunities("Data Scientist")

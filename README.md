@@ -18,14 +18,14 @@ The main objective of this project is to **generate a dataset of research opport
 + To use **Data visualization** methods to easily interpret the data.
 
 ## Dataset description
-The dataset generated with this package contains job offers obtained from Euraxess. In this case, the dataset was obtained using "Data Scientist" as keyword, but another keywords would result in differents datasets, each row of the dataset contains a different job offer and its attributes. The columns describing the dastaset are:
-+ Job Offer Title: Title of the job offer. 
-+ Reasercher Profile: Profile asked in the offer for the appliants.
+The dataset generated with this package contains job offers obtained from EURAXESS. Each row of the dataset contains different job offers and its attributes. In the example table showed below, the dataset was obtained using "Data Scientist" as keyword, but another keywords would result in different datasets. The columns describing the dataset are:
++ Job Offer Title: Title of the job offer.
++ Researcher Profile: Expected applicant profile/s.
 + Company: Company offering the job.
 + Hours/Week: Weekly working hours.
 + Country: Country where the job is offered.
 + City: City where the job is offered.
-+ More info: Url where the offer can be located.
++ More info: URL where the offer can be located.
 
 | Job Offer Title                           | Researcher Profile                                                                     | Company                                        | Hours/Week | Country     | City     | More Info                                 |
 |-------------------------------------------|----------------------------------------------------------------------------------------|------------------------------------------------|------------|-------------|----------|-------------------------------------------|
@@ -34,7 +34,7 @@ The dataset generated with this package contains job offers obtained from Euraxe
 | Data Scientist                            | First Stage Researcher (R1)                                                            | UNIVERSIDAD DE BURGOS                          | 37.5       | Spain       | Burgos   | https://euraxess.ec.europa.eu/jobs/700503 |
 
 
-## License 
+## License
 This project and all the datasets derived from it are realesed under CC BY-NC-SA 4.0 License. [See more](https://github.com/avicenteg/euraxess_scraping/blob/master/LICENSE.md)
 
 ## How to install?

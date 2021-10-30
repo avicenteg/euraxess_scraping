@@ -1,9 +1,14 @@
-import requests
 from bs4 import BeautifulSoup as BS
-import re
+import csv
 import pandas as pd
+import re
+import requests
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from tqdm import tqdm 
 from time import sleep
+from webdriver_manager.chrome import ChromeDriverManager
 
 def search_oportunities(keywords):
     # Header definition
@@ -50,6 +55,7 @@ def search_oportunities(keywords):
             profiles = []
             companies = []
             hours = []
+            apply_url =[]
             for i in tqdm(range(int(pages_count_subdomain))):
                 subdomain_pages_str = subdomain_str + "&page={}".format(i)  # String of keyword webpage i
                 subdomain_pages_rq = requests.get(subdomain_pages_str, headers=headers, timeout=120)  # Request of this page
@@ -62,6 +68,7 @@ def search_oportunities(keywords):
                     raw_href_sub.append(href)   # Get offer URLs
                     raw_titles_sub.append(title.get_text().replace("\n",""))  # Get offer titles
             for url in tqdm(raw_href_sub):
+                sleep(1)
                 job_rq = requests.get(url, headers=headers, timeout=120)
                 job_rq.close()
                 job_soup = BS(job_rq.content, "html.parser")
@@ -90,6 +97,8 @@ def search_oportunities(keywords):
                     profiles.append(" ".join(researcher_profile[0].get_text().strip().replace("\n\n",",").split()))
                 else:
                     profiles.append("")
+                apply_url.append(_get_contacts(url)) 
+                
 
     empty_table = pd.DataFrame()
     empty_table["Job Offer Title"] = raw_titles_sub
@@ -98,6 +107,29 @@ def search_oportunities(keywords):
     empty_table["Hours/Week"] = hours
     empty_table["Country"] = countries
     empty_table["City"] = cities
+    empty_table["Where to Apply"] = apply_url
     empty_table["More Info"] = raw_href_sub
 
-    empty_table.to_csv(r"{}.csv".format(keywords), sep=";" ,index=False)
+    empty_table.to_csv(r"{}.csv".format(keywords),quoting=csv.QUOTE_NONNUMERIC, sep=";" ,index=False)
+
+def _get_contacts(url):
+    # headless browser
+    options = Options()
+    options.headless = True
+    options.add_argument("--window-size=1920,1200")
+
+    # install chromedriver and open new browser
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    # open url in browser
+    driver.get(url)
+    # find 'WHERE TO APPLY' buttom 
+    apply_element = driver.find_element(By.ID,'apply_id')
+    # click the buttom
+    apply_element.click()
+    # get new window
+    application_web = driver.find_element(By.ID,'applyModal') 
+    # get application url   
+    url_element = application_web.find_element(By.TAG_NAME,'a')
+    application_url = url_element.get_attribute('href')
+    driver.quit()
+    return application_url

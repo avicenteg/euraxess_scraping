@@ -4,6 +4,7 @@ import pandas as pd
 import re
 import requests
 from selenium import webdriver
+import selenium.common.exceptions
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from tqdm import tqdm 
@@ -124,10 +125,13 @@ def _get_contacts(url):
     apply_element = driver.find_element(By.ID,'apply_id')
     # click the buttom
     apply_element.click()
-    # get new window
-    application_web = driver.find_element(By.ID,'applyModal') 
-    # get application url   
-    url_element = application_web.find_element(By.TAG_NAME,'a')
-    application_url = url_element.get_attribute('href')
+    try:
+        # get new window
+        application_web = driver.find_element(By.ID,'applyModal') 
+        # get application url   
+        url_element = application_web.find_element(By.TAG_NAME,'a')
+        application_url = url_element.get_attribute('href')
+    except selenium.common.exceptions.NoSuchElementException:
+        application_url = ""
     driver.quit()
     return application_url

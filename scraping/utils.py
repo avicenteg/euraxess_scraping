@@ -7,7 +7,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from tqdm import tqdm 
-from time import sleep
 from webdriver_manager.chrome import ChromeDriverManager
 
 def search_oportunities(keywords):
@@ -68,7 +67,6 @@ def search_oportunities(keywords):
                     raw_href_sub.append(href)   # Get offer URLs
                     raw_titles_sub.append(title.get_text().replace("\n",""))  # Get offer titles
             for url in tqdm(raw_href_sub):
-                sleep(1)
                 job_rq = requests.get(url, headers=headers, timeout=120)
                 job_rq.close()
                 job_soup = BS(job_rq.content, "html.parser")

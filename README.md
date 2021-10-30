@@ -27,12 +27,11 @@ The dataset generated with this package contains job offers obtained from EURAXE
 + City: City where the job is offered.
 + More info: URL where the offer can be located.
 
-| Job Offer Title                           | Researcher Profile                                                                     | Company                                        | Hours/Week | Country     | City     | More Info                                 |
-|-------------------------------------------|----------------------------------------------------------------------------------------|------------------------------------------------|------------|-------------|----------|-------------------------------------------|
-| Data Scientist                            | First Stage Researcher (R1) , Recognised Researcher (R2) , Established Researcher (R3) | Centro de Biología Molecular Severo Ochoa      | 37.5       | Spain       | Madrid   | https://euraxess.ec.europa.eu/jobs/692406 |
-| Data scientist \| Postdoctoral researcher | Recognised Researcher (R2)                                                             | Radboud University Medical Center (Radboudumc) | 36.0       | Netherlands | Nijmegen | https://euraxess.ec.europa.eu/jobs/695497 |
-| Data Scientist                            | First Stage Researcher (R1)                                                            | UNIVERSIDAD DE BURGOS                          | 37.5       | Spain       | Burgos   | https://euraxess.ec.europa.eu/jobs/700503 |
-
+| Job Offer Title                           | Researcher Profile                                                                     | Company                                        | Hours/Week | Country     | City     | Where to Apply                                                                                 | More Info                                 |
+|-------------------------------------------|----------------------------------------------------------------------------------------|------------------------------------------------|------------|-------------|----------|------------------------------------------------------------------------------------------------|-------------------------------------------|
+| Data Scientist                            | First Stage Researcher (R1) , Recognised Researcher (R2) , Established Researcher (R3) | Centro de Biología Molecular Severo Ochoa      | 37.5       | Spain       | Madrid   | mailto:m.llorens@csic.es                                                                       | https://euraxess.ec.europa.eu/jobs/692406 |
+| Data scientist \| Postdoctoral researcher | Recognised Researcher (R2)                                                             | Radboud University Medical Center (Radboudumc) | 36.0       | Netherlands | Nijmegen | https://www.academictransfer.com/en/305147/data-scientist-postdoctoral-researcher/apply/#apply | https://euraxess.ec.europa.eu/jobs/695497 |
+| Data Scientist                            | First Stage Researcher (R1)                                                            | UNIVERSIDAD DE BURGOS                          | 37.5       | Spain       | Burgos   |                                                                                                | https://euraxess.ec.europa.eu/jobs/700503 |
 
 ## License
 This project and all the datasets derived from it are realesed under CC BY-NC-SA 4.0 License. [See more](https://github.com/avicenteg/euraxess_scraping/blob/master/LICENSE.md)

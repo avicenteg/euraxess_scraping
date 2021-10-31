@@ -43,3 +43,8 @@ To use this web scraper coded in python, it will be necessary to install the dep
 ```
 pip install -r requirements.txt
 ```
+
+## How it works
+
+Inline-style: 
+![alt text](https://github.com/avicenteg/euraxess_scraping/blob/master/images/schema.png "Application Schema")

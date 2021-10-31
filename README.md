@@ -25,6 +25,7 @@ The dataset generated with this package contains job offers obtained from EURAXE
 + Hours/Week: Weekly working hours.
 + Country: Country where the job is offered.
 + City: City where the job is offered.
++ Where to Apply: Url or email where to apply to the offer.
 + More info: URL where the offer can be located.
 
 | Job Offer Title                           | Researcher Profile                                                                     | Company                                        | Hours/Week | Country     | City     | Where to Apply                                                                                 | More Info                                 |

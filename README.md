@@ -18,7 +18,7 @@ The main objective of this project is to **generate a dataset of research opport
 + To use **Data visualization** methods to easily interpret the data.
 
 ## Dataset description
-The dataset generated with this package contains job offers obtained from EURAXESS. Each row of the dataset contains different job offers and its attributes. In the example table showed below, the dataset was obtained using "Data Scientist" as keyword, but another keywords would result in different datasets. The columns describing the dataset are:
+The dataset generated with this package contains job offers obtained from EURAXESS. Each row of the dataset contains different job offers and its attributes. In the example table showed below, the dataset was obtained using "Data Scientist" as keyword, but another keywords would result in different datasets. The complete dataset is available on Zenodo (doi:[10.5281/zenodo.5636238](https://zenodo.org/record/5636238#.YYBLe57MJhG)). The columns describing the dataset are:
 + Job Offer Title: Title of the job offer.
 + Researcher Profile: Expected applicant profile/s.
 + Company: Company offering the job.

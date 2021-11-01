@@ -8,7 +8,7 @@ import selenium.common.exceptions
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from time import sleep, time
-from tqdm import tqdm 
+from tqdm import tqdm
 from webdriver_manager.chrome import ChromeDriverManager
 
 def search_oportunities(keywords):
@@ -34,7 +34,7 @@ def search_oportunities(keywords):
         print("Web is available for scraping")
     else:
         print("Something is wrong. Status code:", subdomain_rq.status_code)
-    # Extract useful from subdomain (keyword) page
+    # Extract useful info from subdomain (keyword) page
     soup_subdomain = BS(subdomain_rq.content, "html.parser")
     # Extract number of offers/pages for subdomain_page (keywords):
     offers_subdomain = soup_subdomain.find_all("h2", {"class": "text-center"})
@@ -98,8 +98,8 @@ def search_oportunities(keywords):
                     profiles.append(" ".join(researcher_profile[0].get_text().strip().replace("\n\n",",").split()))
                 else:
                     profiles.append("")
-                apply_url.append(_get_contacts(url)) 
-                
+                apply_url.append(_get_contacts(url))
+
                 # sleep time proportional tu response delay
                 response_delay = time()-t0
                 sleep(2* (response_delay))
@@ -126,14 +126,14 @@ def _get_contacts(url):
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     # open url in browser
     driver.get(url)
-    # find 'WHERE TO APPLY' buttom 
+    # find 'WHERE TO APPLY' buttom
     apply_element = driver.find_element(By.ID,'apply_id')
     # click the buttom
     apply_element.click()
     try:
         # get new window
-        application_web = driver.find_element(By.ID,'applyModal') 
-        # get application url   
+        application_web = driver.find_element(By.ID,'applyModal')
+        # get application url
         url_element = application_web.find_element(By.TAG_NAME,'a')
         application_url = url_element.get_attribute('href')
     except selenium.common.exceptions.NoSuchElementException:

@@ -7,6 +7,7 @@ from selenium import webdriver
 import selenium.common.exceptions
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from time import sleep, time
 from tqdm import tqdm 
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -68,6 +69,7 @@ def search_oportunities(keywords):
                     raw_href_sub.append(href)   # Get offer URLs
                     raw_titles_sub.append(title.get_text().replace("\n",""))  # Get offer titles
             for url in tqdm(raw_href_sub):
+                t0 = time()
                 job_rq = requests.get(url, headers=headers, timeout=120)
                 job_rq.close()
                 job_soup = BS(job_rq.content, "html.parser")
@@ -98,6 +100,9 @@ def search_oportunities(keywords):
                     profiles.append("")
                 apply_url.append(_get_contacts(url)) 
                 
+                # sleep time proportional tu response delay
+                response_delay = time()-t0
+                sleep(2* (response_delay))
 
     empty_table = pd.DataFrame()
     empty_table["Job Offer Title"] = raw_titles_sub

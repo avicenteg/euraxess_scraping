@@ -22,17 +22,18 @@ The dataset generated with this package contains job offers obtained from EURAXE
 + Job Offer Title: Title of the job offer.
 + Researcher Profile: Expected applicant profile/s.
 + Company: Company offering the job.
++ Field: Research field of the job offer.
 + Hours/Week: Weekly working hours.
 + Country: Country where the job is offered.
 + City: City where the job is offered.
 + Where to Apply: Url or email where to apply to the offer.
 + More info: URL where the offer can be located.
 
-| Job Offer Title                           | Researcher Profile                                                                     | Company                                        | Hours/Week | Country     | City     | Where to Apply                                                                                 | More Info                                 |
-|-------------------------------------------|----------------------------------------------------------------------------------------|------------------------------------------------|------------|-------------|----------|------------------------------------------------------------------------------------------------|-------------------------------------------|
-| Data Scientist                            | First Stage Researcher (R1) , Recognised Researcher (R2) , Established Researcher (R3) | Centro de Biología Molecular Severo Ochoa      | 37.5       | Spain       | Madrid   | mailto:m.llorens@csic.es                                                                       | https://euraxess.ec.europa.eu/jobs/692406 |
-| Data scientist \| Postdoctoral researcher | Recognised Researcher (R2)                                                             | Radboud University Medical Center (Radboudumc) | 36.0       | Netherlands | Nijmegen | https://www.academictransfer.com/en/305147/data-scientist-postdoctoral-researcher/apply/#apply | https://euraxess.ec.europa.eu/jobs/695497 |
-| Data Scientist                            | First Stage Researcher (R1)                                                            | UNIVERSIDAD DE BURGOS                          | 37.5       | Spain       | Burgos   |                                                                                                | https://euraxess.ec.europa.eu/jobs/700503 |
+| Job Offer Title                           | Researcher Profile                                                                     | Company                                        | Field                                              | Hours/Week | Country     | City     | Where to Apply                                                                                 | More Info                                 |
+|-------------------------------------------|----------------------------------------------------------------------------------------|------------------------------------------------|----------------------------------------------------|------------|-------------|----------|------------------------------------------------------------------------------------------------|-------------------------------------------|
+| Data Scientist                            | First Stage Researcher (R1) , Recognised Researcher (R2) , Established Researcher (R3) | Centro de Biología Molecular Severo Ochoa      | Biological sciences, Computer science, Programming | 37.5       | Spain       | Madrid   | mailto:m.llorens@csic.es                                                                       | https://euraxess.ec.europa.eu/jobs/692406 |
+| Data scientist \| Postdoctoral researcher | Recognised Researcher (R2)                                                             | Radboud University Medical Center (Radboudumc) | Physics                                            | 36.0       | Netherlands | Nijmegen | https://www.academictransfer.com/en/305147/data-scientist-postdoctoral-researcher/apply/#apply | https://euraxess.ec.europa.eu/jobs/695497 |
+| Data Scientist                            | First Stage Researcher (R1)                                                            | UNIVERSIDAD DE BURGOS                          | Computer science, Other                            | 37.5       | Spain       | Burgos   |                                                                                                | https://euraxess.ec.europa.eu/jobs/700503 |
 
 ## License
 This project and all the datasets derived from it are realesed under CC BY-NC-SA 4.0 License. [See more](https://github.com/avicenteg/euraxess_scraping/blob/master/LICENSE.md)

@@ -148,5 +148,3 @@ def _get_contacts(url):
         application_url = ""
     driver.quit()
     return application_url
-
-search_oportunities("Data Scientist")

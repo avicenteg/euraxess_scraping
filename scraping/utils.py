@@ -108,8 +108,8 @@ def search_oportunities(keywords):
                 apply_url.append(_get_contacts(url))
 
                 # sleep time proportional tu response delay
-                response_delay = time()-t0
-                sleep(2* (response_delay))
+                # response_delay = time()-t0
+                # sleep(2* (response_delay))
 
     empty_table = pd.DataFrame()
     empty_table["Job Offer Title"] = raw_titles_sub

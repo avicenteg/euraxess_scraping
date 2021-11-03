@@ -53,6 +53,7 @@ def search_oportunities(keywords):
             raw_href_sub = []
             countries = []
             cities = []
+            fields = []
             profiles = []
             companies = []
             hours = []
@@ -78,6 +79,7 @@ def search_oportunities(keywords):
                 job_company = job_soup.find_all("div", {"class": "col-xs-12 col-sm-7 value field-company-institute inline"})
                 hours_week = job_soup.find_all("div", {"class": "col-xs-12 col-sm-7 value field-hours-per-week inline"})
                 researcher_profile = job_soup.find_all("div", {"class": "col-xs-12 col-sm-7 value field-research-profile inline"})
+                research_field = job_soup.find_all("div", {"class": "col-xs-12 col-sm-7 value field-research-field inline"})
                 if len(job_country) > 0:
                     countries.append(job_country[0].get_text().strip())
                 else:
@@ -98,6 +100,11 @@ def search_oportunities(keywords):
                     profiles.append(" ".join(researcher_profile[0].get_text().strip().replace("\n\n",",").split()))
                 else:
                     profiles.append("")
+                if len(research_field) > 0:
+                    raw_fields = " ".join(research_field[0].get_text().strip().replace("\n\n",",").split())
+                    fields.append(re.sub(r'O.*,', '' ,raw_fields).replace(' ›', ','))
+                else:
+                    fields.append("")
                 apply_url.append(_get_contacts(url))
 
                 # sleep time proportional tu response delay
@@ -108,6 +115,7 @@ def search_oportunities(keywords):
     empty_table["Job Offer Title"] = raw_titles_sub
     empty_table["Researcher Profile"] = profiles
     empty_table["Company"] = companies
+    empty_table["Fields"] = fields
     empty_table["Hours/Week"] = hours
     empty_table["Country"] = countries
     empty_table["City"] = cities
@@ -140,3 +148,5 @@ def _get_contacts(url):
         application_url = ""
     driver.quit()
     return application_url
+
+search_oportunities("Data Scientist")

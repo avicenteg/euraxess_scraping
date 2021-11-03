@@ -135,10 +135,10 @@ def _get_contacts(url):
     # open url in browser
     driver.get(url)
     # find 'WHERE TO APPLY' buttom
-    apply_element = driver.find_element(By.ID,'apply_id')
-    # click the buttom
-    apply_element.click()
     try:
+        apply_element = driver.find_element(By.ID,'apply_id')
+        # click the buttom
+        apply_element.click()
         # get new window
         application_web = driver.find_element(By.ID,'applyModal')
         # get application url
@@ -148,5 +148,3 @@ def _get_contacts(url):
         application_url = ""
     driver.quit()
     return application_url
-
-search_oportunities("Data Scientist")

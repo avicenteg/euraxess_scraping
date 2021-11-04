@@ -24,7 +24,7 @@ def search_oportunities(keywords):
     # Keywords (i.e. job field: data science, data analyst etc...)
     keywords = str(keywords)
     # Join keywords and main page: web to scrape
-    search_str = "?keywords=" + keywords.replace(" ", "%20")
+    search_str = '?keywords="' + keywords.replace(" ", "%20") + '"'
     subdomain_str = main_str + "/jobs/search" + search_str
     # Subdomain request
     subdomain_rq = requests.get(subdomain_str, headers=headers)
@@ -108,8 +108,8 @@ def search_oportunities(keywords):
                 apply_url.append(_get_contacts(url))
 
                 # sleep time proportional tu response delay
-                # response_delay = time()-t0
-                # sleep(2* (response_delay))
+                response_delay = time()-t0
+                sleep(2* (response_delay))
 
     empty_table = pd.DataFrame()
     empty_table["Job Offer Title"] = raw_titles_sub
